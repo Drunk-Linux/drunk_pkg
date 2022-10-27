@@ -5,7 +5,7 @@ arch=('aarch64')
 depends=(glibc)
 
 prepare() {
-	echo dummy
+	echo dummy's
 }
 
 build() {
