@@ -72,7 +72,7 @@ jobs:
         
         # Now prepare drunk build env
         # As were running in ubuntu env then we need to bypass normal checks of script
-        touch setup/checks/is_checked
+        sudo touch setup/checks/is_checked
         
     - name: Setup docker
       run: |
