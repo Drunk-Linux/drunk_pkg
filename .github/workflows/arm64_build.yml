@@ -52,6 +52,9 @@ jobs:
       run: |
         # Basics
         export HEAD_COMMIT=$(jq --raw-output .commits[-1].id "$GITHUB_EVENT_PATH")
+
+        # Why you githib doing this to us?
+        sudo chmod -R 777 /home/runner/work/drunk_pkg/drunk_pkg/DRUNK
         
         # Clone and install required deps
         mkdir -p /home/runner/work/drunk_pkg/drunk_pkg/DRUNK/
