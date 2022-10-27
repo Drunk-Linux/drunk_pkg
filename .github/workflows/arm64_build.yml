@@ -107,7 +107,7 @@ jobs:
         sudo docker exec --tty -e PATH=/bin:/sbin:/usr/bin:/usr/sbin drunk_dev /bin/bash -c "bash -c /home/developer/DRUNK/setup/docker/fix_sudo.sh"
         sudo docker exec --tty -e PATH=/bin:/sbin:/usr/bin:/usr/sbin drunk_dev /bin/bash -c "bash -c /home/developer/DRUNK/setup/docker/locale.sh"
         
-        sudo docker exec --tty -e PATH=/bin:/sbin:/usr/bin:/usr/sbin drunk_dev /bin/bash -c "sudo chown -R developer /home/developer/DRUNK"
+        sudo docker exec --tty -e PATH=/bin:/sbin:/usr/bin:/usr/sbin drunk_dev /bin/bash -c "chown -R developer /home/developer/DRUNK"
         
     - name: PKG Build
       run: |
@@ -115,7 +115,7 @@ jobs:
         iamnow=$(whoami)
         echo $iamnow
         sudo chmod -R 777 /home/runner/work/drunk_pkg/drunk_pkg/DRUNK
-        sudo docker exec --tty -e PATH=/bin:/sbin:/usr/bin:/usr/sbin drunk_dev /bin/bash -c "sudo chmod -R 777 /home/developer/DRUNK"
+        sudo docker exec --tty -e PATH=/bin:/sbin:/usr/bin:/usr/sbin drunk_dev /bin/bash -c "chmod -R 777 /home/developer/DRUNK"
 
         sudo chmod +x /home/runner/work/drunk_pkg/drunk_pkg/DRUNK/drunk
         sudo chmod +x /home/runner/work/drunk_pkg/drunk_pkg/DRUNK/setup/drunk.sh
