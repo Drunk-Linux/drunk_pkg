@@ -87,7 +87,7 @@ jobs:
         --device=/dev/loop0:/dev/loop0 \
         --env PATH=/bin:/sbin:/usr/bin:/usr/sbin \
         --env LD_LIBRARY_PATH=/lib64:/lib:/usr/lib \
-	hilledkinged/drunk:aarch64 /bin/bash
+        hilledkinged/drunk:aarch64 /bin/bash
         
         sleep 1
         sudo docker start drunk_dev >/dev/null
