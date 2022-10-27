@@ -1,5 +1,5 @@
 pkgname=kde-dummy
-pkgver=0.0.0
+pkgver=1.0.0
 pkgrel=1
 arch=('aarch64')
 depends=(glibc)
