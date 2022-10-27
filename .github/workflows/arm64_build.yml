@@ -73,6 +73,7 @@ jobs:
         # Now prepare drunk build env
         # As were running in ubuntu env then we need to bypass normal checks of script
         touch setup/checks/is_checked
+	touch setup/checks/docker_ready
         
     - name: Setup docker
       run: |
@@ -107,10 +108,6 @@ jobs:
         sudo docker exec --tty -e PATH=/bin:/sbin:/usr/bin:/usr/sbin drunk_dev /bin/bash -c "bash -c /home/developer/DRUNK/setup/docker/locale.sh"
         
         sudo docker exec --tty -e PATH=/bin:/sbin:/usr/bin:/usr/sbin drunk_dev /bin/bash -c "chown -R developer /home/developer/DRUNK"
-
-        
-        # Make sure to tell the setup that container is ready to be used ( otherwise it will error out )
-        touch /home/runner/work/drunk_pkg/drunk_pkg/DRUNK/setup/checks/docker_ready
         
     - name: PKG Build
       run: |
