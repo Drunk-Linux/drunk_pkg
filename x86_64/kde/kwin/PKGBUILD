@@ -1,6 +1,6 @@
 pkgname=kwin
-pkgver=5.24.4
-pkgrel=5
+pkgver=5.24.5
+pkgrel=1
 arch=(x86_64)
 depends=(xcb-util-cursor plasma-framework kcmutils kwayland-server
          lcms kdecoration kscreenlocker kconfigwidgets kcrash
