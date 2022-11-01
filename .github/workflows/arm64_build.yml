@@ -52,9 +52,6 @@ jobs:
       run: |
         # Basics
         export HEAD_COMMIT=$(jq --raw-output .commits[-1].id "$GITHUB_EVENT_PATH")
-
-        # Why you githib doing this to us?
-        sudo chmod -R 777 /home/runner/work/drunk_pkg/drunk_pkg/DRUNK
         
         # Clone and install required deps
         mkdir -p /home/runner/work/drunk_pkg/drunk_pkg/DRUNK/
@@ -68,12 +65,11 @@ jobs:
         
         ln -sf setup/drunk.sh drunk
         
-        mkdir -p setup/tmp setup/checks
+        mkdir -p setup/tmp
         
         # Now prepare drunk build env
         # As were running in ubuntu env then we need to bypass normal checks of script
         touch setup/checks/is_checked
-        touch setup/checks/docker_ready
         
     - name: Setup docker
       run: |
@@ -107,15 +103,15 @@ jobs:
         sudo docker exec --tty -e PATH=/bin:/sbin:/usr/bin:/usr/sbin drunk_dev /bin/bash -c "bash -c /home/developer/DRUNK/setup/docker/fix_sudo.sh"
         sudo docker exec --tty -e PATH=/bin:/sbin:/usr/bin:/usr/sbin drunk_dev /bin/bash -c "bash -c /home/developer/DRUNK/setup/docker/locale.sh"
         
-        sudo docker exec --tty -e PATH=/bin:/sbin:/usr/bin:/usr/sbin drunk_dev /bin/bash -c "chown -R developer /home/developer/DRUNK"
-        
+        # Make sure to tell the setup that container is ready to be used ( otherwise it will error out )
+        touch /home/runner/work/drunk_pkg/drunk_pkg/DRUNK/setup/checks/docker_ready
+
     - name: PKG Build
       run: |
         # Perms fix
         iamnow=$(whoami)
         echo $iamnow
         sudo chmod -R 777 /home/runner/work/drunk_pkg/drunk_pkg/DRUNK
-        sudo docker exec --tty -e PATH=/bin:/sbin:/usr/bin:/usr/sbin drunk_dev /bin/bash -c "chmod -R 777 /home/developer/DRUNK"
 
         sudo chmod +x /home/runner/work/drunk_pkg/drunk_pkg/DRUNK/drunk
         sudo chmod +x /home/runner/work/drunk_pkg/drunk_pkg/DRUNK/setup/drunk.sh
