@@ -11,6 +11,8 @@ _tag=e61745a6b7add50d380cfd7d3883dd6c62fc2c71
 source=(git+https://github.com/google/brotli#tag=${_tag})
 
 prepare() {
+	cd $srcdir/
+
 	pip3 install setuptools
 }
 
